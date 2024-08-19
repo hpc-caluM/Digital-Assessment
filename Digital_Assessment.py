@@ -17,13 +17,17 @@ bg_surface = pygame.transform.scale(bg_surface, (WIDTH, HEIGHT))
 character_surface = pygame.image.load('assets/Character1M_3_walk_1.png').convert_alpha()       
 character_rect = character_surface.get_rect(center = (500,500))
 
-character_surface = pygame.image.load('assets/Character1M_3_walk_2.png').convert_alpha()       
-character_rect = character_surface.get_rect(center = (500,500))
-
-character_surface = pygame.image.load('assets/Character1M_3_walk_3.png').convert_alpha()       
-character_rect = character_surface.get_rect(center = (500,500))
-    
-
+character_surface = [pygame.image.load("assets/Character1M_3_walk_1.png"),
+                pygame.image.load("assets/Character1M_3_walk_2.png"),
+                pygame.image.load("assets/Character1M_3_walk_3.png"),
+                pygame.image.load("assets/Character1M_3_walk_4.png"),
+                pygame.image.load("assets/Character1M_3_walk_5.png"),
+                pygame.image.load("assets/Character1M_3_walk_6.png"),
+                pygame.image.load("assets/Character1M_3_walk_7.png"),]
+ANIMATION = pygame.USEREVENT
+pygame.time.set_timer(ANIMATION, 500, 500)
+image_index = 0
+velocity = 12
 
 while True:
     for event in pygame.event.get():
