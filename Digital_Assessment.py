@@ -32,7 +32,7 @@ for i in range(len(character_surface)):
      character_flip.append(pygame.transform.flip(character_surface[i], True, False))
 
 
-character_rect = pygame.Rect(100,100,40,80)
+character_rect = pygame.Rect(100,100,20,30)
  
 # = [pygame.Rect(200,350,50,50),pygame.Rect(260,320,50,50)]
  
@@ -102,6 +102,7 @@ while True:
 
     #The character_rect code
 
+
         if event.type == pygame.KEYUP:   
             if event.key == pygame.K_a or event.key == pygame.K_d:
                 moving = False  
@@ -111,6 +112,25 @@ while True:
             if event.key == pygame.K_w or event.key == pygame.K_s:
                 moving = False  
                 image_index = 0
+        if event.type == pygame.KEYDOWN:
+            print("key down")
+            if event.key == pygame.K_d:
+                right = True
+            if event.key == pygame.K_a:
+                left = True
+            if event.key == pygame.K_s:
+                down = True
+            if event.key == pygame.K_w:
+                up = True
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_d:
+                right = False
+            if event.key == pygame.K_a:
+                left = False
+            if event.key == pygame.K_s:
+                down = False
+            if event.key == pygame.K_w:
+                up = False
                 
         if event.type == ANIMATION:
           
@@ -119,7 +139,7 @@ while True:
             else:
                 image_index = 0 
                 
-                    
+    print(right)
    #Walking animation
     keys = pygame.key.get_pressed()
 
@@ -127,24 +147,24 @@ while True:
             #character_rect.x -= 1
             moving = True
             facingleft = True
-            left = True
+            #left = True
     if keys[pygame.K_d]: 
             #character_rect.x += 1
             moving = True
             facingleft = False
-            right = True
+            #right = True
             
     if keys[pygame.K_w]:
             #character_rect.y -= 1
             moving = True
-            up = True
+            #up = True
     if keys[pygame.K_s]:
             #character_rect.y += 1
             moving = True
-            down = True
+            #down = True
             
-    character_movement = 0
-    character_movement -= 0
+    #character_movement = 0
+    #character_movement -= 0
     
     #Collisions (The boxes that i draw so i know where to do the collisions)
     wall1 = pygame.Rect(54, 235, 635, 300)
@@ -165,32 +185,19 @@ while True:
  
     movement = [0,0]
     if right == True:
-        movement[0] += 5
+        movement[0] += 2
     if left == True:
-        movement[0] -= 5
+        movement[0] -= 2
     if up == True:
-        movement[1] -= 5
+        movement[1] -= 2
     if down == True:
-        movement[1] += 5
+        movement[1] += 2
         
-    if event.type == pygame.KEYDOWN:
-            if event.key ==  keys[pygame.K_d]:
-                right = True
-            if event.key ==  pygame.K_LEFT:
-                left = True
-            if event.key ==  pygame.K_DOWN:
-                down = True
-            if event.key ==  pygame.K_UP:
-                up = True
-    if event.type ==  pygame.KEYUP:
-            if event.key ==  pygame.K_RIGHT:
-                right = False
-            if event.key ==  pygame.K_LEFT:
-                left = False
-            if event.key ==  pygame.K_DOWN:
-                down = False
-            if event.key ==  pygame.K_UP:
-                up = False
+    keys = pygame.key.get_pressed()
+    
+
+
+
  
     character_rect = move(character_rect,movement,wall_list)
  
@@ -216,7 +223,7 @@ while True:
     #print(character_rect.x, character_rect.y)
     
     pygame.draw.rect(SCREEN, pygame.Color('red'), wall1)
-    pygame.draw.rect(SCREEN,pygame.Color("white"),character_rect)
+    #pygame.draw.rect(SCREEN,pygame.Color("white"),character_rect)
     
     #window.blit(current_sprite, (x, y))
 
