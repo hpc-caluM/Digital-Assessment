@@ -35,7 +35,14 @@ for i in range(len(character_surface)):
 character_rect = pygame.Rect(100,100,20,30)
  
 # = [pygame.Rect(200,350,50,50),pygame.Rect(260,320,50,50)]
- 
+
+#Objects (where i code the map pieces for progression)
+
+key1_rect = pygame.Rect(611,59,20,20)
+
+key_list = [key1_rect]
+
+
 def collision_test(character_rect,wall_list):
     collisions = []
     for wall in wall_list:
@@ -113,7 +120,6 @@ while True:
                 moving = False  
                 image_index = 0
         if event.type == pygame.KEYDOWN:
-            print("key down")
             if event.key == pygame.K_d:
                 right = True
             if event.key == pygame.K_a:
@@ -139,7 +145,6 @@ while True:
             else:
                 image_index = 0 
                 
-    print(right)
    #Walking animation
     keys = pygame.key.get_pressed()
 
@@ -167,7 +172,7 @@ while True:
     #character_movement -= 0
     
     #Collisions (The boxes that i draw so i know where to do the collisions)
-    wall1 = pygame.Rect(54, 235, 635, 300)
+    wall1 = pygame.Rect(54, 235, 635, 270)
     
     wall_list = [wall1]
     
@@ -178,10 +183,18 @@ while True:
                 collision = True
                 print (collision)
                 
+            if character_rect.right >= WIDTH or character_rect.left <= 0:
+                character_rect.x *= -1
+    if character_rect.right >= WIDTH or character_rect.top <= 0:
+        character_rect.y *= -1
+    if character_rect.right >= WIDTH or character_rect.bottom <= 0:
+        character_rect.y *= -1
+    if character_rect.bottom >= HEIGHT:
+        character_rect.y *= -1
     
     
     #clear display
-    SCREEN.fill((0,0,0))
+        SCREEN.fill((0,0,0))
  
     movement = [0,0]
     if right == True:
@@ -222,11 +235,13 @@ while True:
     SCREEN.blit(current_sprite, character_rect)
     #print(character_rect.x, character_rect.y)
     
-    pygame.draw.rect(SCREEN, pygame.Color('red'), wall1)
+    #pygame.draw.rect(SCREEN, pygame.Color('red'), wall1)
     #pygame.draw.rect(SCREEN,pygame.Color("white"),character_rect)
     
     #window.blit(current_sprite, (x, y))
 
+    for key in key_list:
+        pygame.draw.rect(SCREEN,pygame.Color("pink"),key)
     
     pygame.display.update()
     clock.tick(60)
