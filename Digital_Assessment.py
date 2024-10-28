@@ -5,6 +5,7 @@ from pygame.locals import QUIT
 pygame.init()
 clock = pygame.time.Clock()
 
+#The Screen and Title
 WIDTH, HEIGHT = 900, 700
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Lost')
@@ -42,7 +43,7 @@ key1_rect = pygame.Rect(611,59,20,20)
 
 key_list = [key1_rect]
 
-
+#Extra Collision code
 def collision_test(character_rect,wall_list):
     collisions = []
     for wall in wall_list:
