@@ -40,8 +40,21 @@ character_rect = pygame.Rect(100,100,20,30)
 #Objects (where i code the map pieces for progression)
 
 key1_rect = pygame.Rect(611,59,20,20)
+#key2_rect = pygame.Rect()
+#key3_rect = pygame.Rect()
+#key4_rect = pygame.Rect()
+#key5_rect = pygame.Rect()
 
 key_list = [key1_rect]
+
+#Object sprites    
+key1_rect = [pygame.image.load("assets/BD3  (7).png")]
+#key2_rect = [pygame.image.load("assets/pygame.image.load(BD3(7).png")]
+#key3_rect = [pygame.image.load("assets/pygame.image.load(BD3(7).png")]           
+#key4_rect = [pygame.image.load("assets/pygame.image.load(BD3(7).png")]   
+#key5_rect = [pygame.image.load("assets/pygame.image.load(BD3(7).png")]   
+
+
 
 #Extra Collision code
 def collision_test(character_rect,wall_list):
@@ -220,6 +233,7 @@ while True:
     for wall in wall_list:
         pygame.draw.rect(SCREEN,(255,0,0),wall)
              
+   
     
             
     if moving:
@@ -241,8 +255,10 @@ while True:
     
     #window.blit(current_sprite, (x, y))
 
+    #Object number 1 drawn
     for key in key_list:
-        pygame.draw.rect(SCREEN,pygame.Color("pink"),key)
-    
-    pygame.display.update()
+        #pygame.draw.rect(SCREEN,pygame.Color("pink"),key)
+      
+        
+        pygame.display.update()
     clock.tick(60)
