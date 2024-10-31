@@ -15,6 +15,8 @@ character_movement = 0
 bg_surface = pygame.image.load('assets/Assessment Map.png').convert()
 bg_surface = pygame.transform.scale(bg_surface,(WIDTH, HEIGHT))
 
+key_surface = pygame.image.load('assets/BD3  (7).png').convert()
+
 #Walking animation
 character_surface = pygame.image.load('assets/Character1M_3_walk_1.png').convert_alpha()       
 character_rect = character_surface.get_rect(center = (670,325))
@@ -45,10 +47,12 @@ key1_rect = pygame.Rect(611,59,20,20)
 #key4_rect = pygame.Rect()
 #key5_rect = pygame.Rect()
 
+#key1_rect = pygame.image.load("assets/BD3  (7).png")
+
 key_list = [key1_rect]
 
 #Object sprites    
-key1_rect = [pygame.image.load("assets/BD3  (7).png")]
+#key1_rect = [pygame.image.load("assets/BD3  (7).png")]
 #key2_rect = [pygame.image.load("assets/pygame.image.load(BD3(7).png")]
 #key3_rect = [pygame.image.load("assets/pygame.image.load(BD3(7).png")]           
 #key4_rect = [pygame.image.load("assets/pygame.image.load(BD3(7).png")]   
@@ -109,6 +113,19 @@ character_idle = [pygame.image.load("assets/Character1M_3_idle_0.png"),
                 pygame.image.load("assets/Character1M_3_idle_7.png")]
 ANIMATION = pygame.USEREVENT
 pygame.time.set_timer(ANIMATION, 150)
+
+#inventory
+
+def inventory():
+    
+
+    inventory_list = []
+    
+    for key in key_list:
+        if character_rect.colliderect(key):
+            inventory_list.append(key)
+            key_list.remove(key)
+    
 
 while True:
     for event in pygame.event.get():
@@ -253,12 +270,17 @@ while True:
     #pygame.draw.rect(SCREEN, pygame.Color('red'), wall1)
     #pygame.draw.rect(SCREEN,pygame.Color("white"),character_rect)
     
+    if character_rect.colliderect:
+        inventory()
+
     #window.blit(current_sprite, (x, y))
 
     #Object number 1 drawn
-    for key in key_list:
+    #for key in key_list:
         #pygame.draw.rect(SCREEN,pygame.Color("pink"),key)
+    if  key1_rect in key_list:
+        SCREEN.blit(key_surface,(611,59))
       
         
-        pygame.display.update()
+    pygame.display.update()
     clock.tick(60)
